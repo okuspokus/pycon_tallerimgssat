@@ -8,6 +8,11 @@ Para abrir una imagen .tif en python: gdal.Open('img.tif') y listo!
 
 -----------------------------------------------------------------------------------------------
 
+# Notebooks:
+taller_imgspython.ipynb : esta en blanco, el plan era completarlo en el taller.
+taller_imgspython_soluciones.ipynb : la notebook completa que mostre.
+
+-------------------------------------------------------------------------------------------------
 # Requisitos:
 
 Python 3.7
