@@ -1,7 +1,10 @@
 ## Taller realizado en PyConAR 2018
 
-# Data: Usamos la imagen Landsat8
+# Data: 
+Usamos la imagen Landsat8: LC082250842018021301T1-SC20180427103449.tar
 La pueden encontrar en al Drive: https://drive.google.com/drive/folders/1oXZJR4rHiAJO4yJnyx8xuAw1XgfOrOmd 
+Ademas en el drive subi una carpeta que se llama "porsifalla" donde podran encontrar los pasos que fuimos realizando.
+Para abrir una imagen .tif en python: gdal.Open('img.tif') y listo!
 
 -----------------------------------------------------------------------------------------------
 
