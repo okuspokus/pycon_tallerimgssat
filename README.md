@@ -9,6 +9,20 @@
 
 **Resumen:** En este tutorial el objetivo será obtener un mapa de coberturas (suelo, agua, vegetación) a partir de una imagen satelital óptica. Comenzaremos seleccionando muestras de una imagen y analizando, mediante una comparación con firmas espectrales conocidas, a que cobertura pertecene cada muestra. Por último, utilizaremos las muestras para realizar una clasificación supervisada que dará como resultado el mapa buscado.
 
+
+
+# Descripción Completa
+
+Las imágenes satelitales cumplen un rol fundamental en el monitoreo terrestre, en particular en lugares de difícil acceso (humedales, glaciares, bosques, etc). En este tutorial trabajaremos con una imagen **Landsat8**. Este satelite monitorea constantemente la Tierra y tiene un tiempo de revisita de 16 días, o sea: una imagen cada 16 días. Estas imágenes son ópticas y gratuitas. 
+
+El **objetivo principal** de este tutorial es mostrar con un ejemplo sencillo como clasificar una imagen satelital en Python. 
+
+1. Para ello veremos como levantar una imagen satelital utilizando la librería **gdal**. 
+2. Luego, seleccionaremos polígonos homogéneos de la imagen y graficaremos las firmas espectrales (la reflectancia reflejada en función la longitud de onda) de cada uno.
+3. Compararemos las firmas calculadas con las firmas espectrales de las clases: agua, suelo y vegetación y decidiremos a qué clase representa cada polígono. 
+
+Con esta información crearemos un dataset de datos etiquetados (a cada pıxel de cada polígono le asignamos la clase del polígono al que pertenece). Este será el conjunto de entrenamiento que utilizaremos para realizar una clasificación supervisada utilizando la librería sklearn. Por último obtendremos un mapa de cobertura.
+
 # Datos
 
 Realizaremos el taller utilizando la imagen [Landsat8: LC082250842018021301T1-SC20180427103449.tar](https://drive.google.com/file/d/1xggur3V0NFQLhu1L2gZx6rqnBYY1wh3g/view?usp=sharing)
@@ -50,15 +64,3 @@ $ conda create -n pycon_test python=3.7.1 --file requirements.txt
 **Importante:** también utilizamos la libreria [roipoly.py](https://github.com/jdoepfert/roipoly.py)
 
 ---------------------------------------------------------------------
-
-# Descripción Completa
-
-Las imágenes satelitales cumplen un rol fundamental en el monitoreo terrestre, en particular en lugares de difícil acceso (humedales, glaciares, bosques, etc). En este tutorial trabajaremos con una imagen **Landsat8**. Este satelite monitorea constantemente la Tierra y tiene un tiempo de revisita de 16 días, o sea: una imagen cada 16 días. Estas imágenes son ópticas y gratuitas. 
-
-El **objetivo principal** de este tutorial es mostrar con un ejemplo sencillo como clasificar una imagen satelital en Python. 
-
-1. Para ello veremos como levantar una imagen satelital utilizando la librería **gdal**. 
-2. Luego, seleccionaremos polígonos homogéneos de la imagen y graficaremos las firmas espectrales (la reflectancia reflejada en función la longitud de onda) de cada uno.
-3. Compararemos las firmas calculadas con las firmas espectrales de las clases: agua, suelo y vegetación y decidiremos a qué clase representa cada polígono. 
-
-Con esta información crearemos un dataset de datos etiquetados (a cada pıxel de cada polígono le asignamos la clase del polígono al que pertenece). Este será el conjunto de entrenamiento que utilizaremos para realizar una clasificación supervisada utilizando la librería sklearn. Por último obtendremos un mapa de cobertura.
