@@ -1,67 +1,64 @@
-## Taller realizado en PyConAR 2018
+<a href="https://eventos.python.org.ar/events/pyconar2018/activity/123/"><img src="https://pbs.twimg.com/profile_images/1025401970692186117/HFUmfob-_400x400.jpg" alt="PyCon Argentina" width="150px"></a>
 
-# Data: 
-Usamos la imagen Landsat8: LC082250842018021301T1-SC20180427103449.tar
-La pueden encontrar en al Drive: https://drive.google.com/drive/folders/1oXZJR4rHiAJO4yJnyx8xuAw1XgfOrOmd 
-Ademas en el drive subi una carpeta que se llama "porsifalla" donde podran encontrar los pasos que fuimos realizando.
-Para abrir una imagen .tif en python: gdal.Open('img.tif') y listo!
+# Imagenes satelitales en Python -- PyCon Argentina 2018
+
+- Tipo: Taller
+- Nivel: Principiante
+- Disertantes: [Mariela Rajngewerc](https://github.com/okuspokus)
+- Fork: [Pablo Sierra](https://github.com/pavelsjo)
+
+**Resumen:** En este tutorial el objetivo será obtener un mapa de coberturas (suelo, agua, vegetación) a partir de una imagen satelital óptica. Comenzaremos seleccionando muestras de una imagen y analizando, mediante una comparación con firmas espectrales conocidas, a que cobertura pertecene cada muestra. Por último, utilizaremos las muestras para realizar una clasificación supervisada que dará como resultado el mapa buscado.
+
+# Datos
+
+Realizaremos el taller utilizando la imagen [Landsat8: LC082250842018021301T1-SC20180427103449.tar](https://drive.google.com/file/d/1xggur3V0NFQLhu1L2gZx6rqnBYY1wh3g/view?usp=sharing)
+
+Para abrir una imagen `.tif` en Python, hacemos lo siguiente:
+
+```python
+import gdal
+
+gdal.Open('img.tif')
+```
 
 -----------------------------------------------------------------------------------------------
 
 # Notebooks:
-taller_imgspython.ipynb : esta en blanco, el plan era completarlo en el taller.
-taller_imgspython_soluciones.ipynb : la notebook completa que mostre.
+
+- [taller_imgspython.ipynb](taller_imgspython.ipynb): para realizar el ejercicio.
+- [taller_imgspython_soluciones.ipynb](taller_imgspython_soluciones.ipynb): una posible solución.
+
+Alternativa para realizar el ejercicio: [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pavelsjo/pycon_tallerimgssat/blob/master/taller_imgspython.ipynb\)
 
 -------------------------------------------------------------------------------------------------
 # Requisitos:
 
-Python 3.7
+Este código ha sido probado con Python 3.7.1, y los paquetes necesarios para trabajar con este repositorio están listados en [requirements.txt](requirements.txt).
 
-GDAL==2.3.0
+Para instalar los requerimientos en [conda](http://conda.pydata.org), ejecuta la siguiente línea de comandos en la terminal:
 
-jupyter==1.0.0
+```
+$ conda install --file requirements.txt
+```
 
-scikit-image==0.14.1
+Si quieres crear un entorno aislado ``pycon_test`` con Python 3.5 y todos los paquetes requeridos, ejecuta el siguiente código:
 
-scikit-learn==0.20.0
+```
+$ conda create -n pycon_test python=3.7.1 --file requirements.txt
+```
 
-scipy==1.1.0
-
-seaborn==0.9.0
-
-numpy==1.15.3
-
-pandas==0.23.4
-
-Ademas utilizamos la libreria roipoly.py :  https://github.com/jdoepfert/roipoly.py
-
-
+**Importante:** también utilizamos la libreria [roipoly.py](https://github.com/jdoepfert/roipoly.py)
 
 ---------------------------------------------------------------------
-En el marco del taller me parecia que estaba bueno crear un enviroment con conda pero no es necesario que sea realice ni con enviroments ni con conda.
 
+# Descripción Completa
 
-Opcion conda enviroments:
-1. Creamos un ambiente en conda llamado pycon_test:
+Las imágenes satelitales cumplen un rol fundamental en el monitoreo terrestre, en particular en lugares de difícil acceso (humedales, glaciares, bosques, etc). En este tutorial trabajaremos con una imagen **Landsat8**. Este satelite monitorea constantemente la Tierra y tiene un tiempo de revisita de 16 días, o sea: una imagen cada 16 días. Estas imágenes son ópticas y gratuitas. 
 
-conda create -n pycon_test python=3.7.1 anaconda
+El **objetivo principal** de este tutorial es mostrar con un ejemplo sencillo como clasificar una imagen satelital en Python. 
 
-2. Ingresamos al ambiente:
+1. Para ello veremos como levantar una imagen satelital utilizando la librería **gdal**. 
+2. Luego, seleccionaremos polígonos homogéneos de la imagen y graficaremos las firmas espectrales (la reflectancia reflejada en función la longitud de onda) de cada uno.
+3. Compararemos las firmas calculadas con las firmas espectrales de las clases: agua, suelo y vegetación y decidiremos a qué clase representa cada polígono. 
 
-source activate pycon_test
-
-3. Instalamos las siguientes librerias:
-
-conda install gdal
-conda install glob
-conda install jupyter
-conda install -c conda-forge scikit-image
-conda install -c anaconda scikit-learn
-conda install pandas
-conda install seaborn
-conda install numpy
-
-4. Salimos del ambiente:
-source deactivate
-
-
+Con esta información crearemos un dataset de datos etiquetados (a cada pıxel de cada polígono le asignamos la clase del polígono al que pertenece). Este será el conjunto de entrenamiento que utilizaremos para realizar una clasificación supervisada utilizando la librería sklearn. Por último obtendremos un mapa de cobertura.
