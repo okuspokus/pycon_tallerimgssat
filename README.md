@@ -39,8 +39,8 @@ gdal.Open('img.tif')
 
 # Notebooks:
 
-- [taller_imgspython.ipynb](taller_imgspython.ipynb): para realizar el ejercicio.
-- [taller_imgspython_soluciones.ipynb](taller_imgspython_soluciones.ipynb): una posible solución.
+- [0.0-Taller-Imagenes-Python.ipynb](./notebook/0.0-Taller-Imagenes-Python.ipynb): para realizar el ejercicio.
+- [0.1-Taller-Imagenes-Python-Soluciones.ipynb](./notebook/0.1-Taller-Imagenes-Python-Soluciones.ipynb): una posible solución.
 
 Alternativa para realizar el ejercicio: [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pavelsjo/pycon_tallerimgssat/blob/master/taller_imgspython.ipynb\)
 
