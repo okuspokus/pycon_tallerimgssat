@@ -57,7 +57,7 @@ def array2raster(out_name,array,geo_trans,proj):
     outdriver = gdal.GetDriverByName("GTiff")
     
     outfile = out_name #¿ESTO IRA AQUI?
-    
+    trans = geo_trans #¿ESTO IRA AQUI?
     outdata   = outdriver.Create(str(outfile), rows, cols, bands, gdal.GDT_Float32)
 
 
