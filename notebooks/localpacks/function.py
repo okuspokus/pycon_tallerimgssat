@@ -55,6 +55,9 @@ def array2raster(out_name,array,geo_trans,proj):
 
     # Create the file, using the information from the original file
     outdriver = gdal.GetDriverByName("GTiff")
+    
+    outfile = out_name #¿ESTO IRA AQUI?
+    
     outdata   = outdriver.Create(str(outfile), rows, cols, bands, gdal.GDT_Float32)
 
 
@@ -63,8 +66,6 @@ def array2raster(out_name,array,geo_trans,proj):
 
     # Write projection information
     outdata.SetProjection(proj)
-    
-    outfile = out_name #¿ESTO IRA AQUI?
 
 
     for i in range(1,4):
